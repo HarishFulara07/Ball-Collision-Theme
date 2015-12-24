@@ -1,0 +1,262 @@
+<!-- Name: Harish Fulara-->
+<!-- Ball Collision Theme JavaScript-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Ball Collision Theme</title>
+	<style type="text/css">
+		* {
+			padding: 0px;
+			margin: 0px;
+		}
+		canvas {
+			background-color: "rgb(255, 255, 255)";
+			display: block;
+			border: 3px solid black;
+		}
+	</style>	
+</head>
+<body>
+
+	<!-- Drawing the HTML5 canvas. The cancas is 480px wide and 320px long -->
+	<canvas id="myCanvas" width="480" height="320"></canvas>
+	
+	<!-- The JavaScript, which is the complete brain behind the theme-->
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		// x coordinate of initial position of the balls
+		var x1 = canvas.width / 2;
+		var x2 = canvas.width / 2;
+		var x3 = canvas.width / 2;
+		var x4 = canvas.width / 2;
+		var x5 = canvas.width / 2;
+		// y coordinate of initial position of the balls
+		var y1 = canvas.height - 20;
+		var y2 = canvas.height - 40;
+		var y3 = canvas.height - 60;
+		var y4 = canvas.height - 80;
+		var y5 = canvas.height - 100;
+		// change in x coordinate of the balls after a certain time interval. We have defined interval to be 10ms in this example.
+		//  This actually causes the animation that ball is moving.
+		var dx1 = 1;
+		var dx2 = 2;
+		var dx3 = 3;
+		var dx4 = 4;
+		var dx5 = 5;
+		// change in x coordinate of the ball after a certain time interval.
+		var dy1 = -1;
+		var dy2 = -2;
+		var dy3 = -3;
+		var dy4 = -4;
+		var dy5 = -5;
+		// radius of the ball
+		var ballRadius = 10;
+		// rgb value for color of the ball. The color of the ball changes everytime it hits the wall
+		var rgb1 = 0;
+		var rgb2 = 149;
+		var rgb3 = 221;
+		var color1;
+		var color2;
+		var color3;
+		var color4;
+		var color5;
+
+
+		/*
+			Initialize the color of the ball
+		*/
+		function ballColorInit() {
+			color1 = "rgb(" + rgb1.toString() + "," + rgb2.toString() + "," + rgb3.toString() + ")";
+			color2 = color3 = color4 = color5 = color1;
+		}
+
+		/*
+			Change the color of the balls everytime after the ball collides with the wall
+		*/
+		function ballColor1() {
+			rgb1 = Math.floor(Math.random() * 255);
+			rgb2 = Math.floor(Math.random() * 255);
+			rgb3 = Math.floor(Math.random() * 255);
+
+			color1 = "rgb(" + rgb1.toString() + "," + rgb2.toString() + "," + rgb3.toString() + ")";
+		}
+
+		function ballColor2() {
+			rgb1 = Math.floor(Math.random() * 255);
+			rgb2 = Math.floor(Math.random() * 255);
+			rgb3 = Math.floor(Math.random() * 255);
+
+			color2 = "rgb(" + rgb1.toString() + "," + rgb2.toString() + "," + rgb3.toString() + ")";
+		}
+
+		function ballColor3() {
+			rgb1 = Math.floor(Math.random() * 255);
+			rgb2 = Math.floor(Math.random() * 255);
+			rgb3 = Math.floor(Math.random() * 255);
+
+			color3 = "rgb(" + rgb1.toString() + "," + rgb2.toString() + "," + rgb3.toString() + ")";
+		}
+
+		function ballColor4() {
+			rgb1 = Math.floor(Math.random() * 255);
+			rgb2 = Math.floor(Math.random() * 255);
+			rgb3 = Math.floor(Math.random() * 255);
+
+			color4 = "rgb(" + rgb1.toString() + "," + rgb2.toString() + "," + rgb3.toString() + ")";
+		}
+
+		function ballColor5() {
+			rgb1 = Math.floor(Math.random() * 255);
+			rgb2 = Math.floor(Math.random() * 255);
+			rgb3 = Math.floor(Math.random() * 255);
+
+			color5 = "rgb(" + rgb1.toString() + "," + rgb2.toString() + "," + rgb3.toString() + ")";
+		}
+
+		/*
+			Function to draw ball1 on the canvas.
+		*/
+		function drawBall1() {
+			ctx.beginPath();
+			ctx.arc(x1, y1, ballRadius, 0, Math.PI * 2);
+			ctx.fillStyle = color1;
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		/*
+			Function to draw ball2 on the canvas.
+		*/
+		function drawBall2() {
+			ctx.beginPath();
+			ctx.arc(x2, y2, ballRadius, 0, Math.PI * 2);
+			ctx.fillStyle = color2;
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		/*
+			Function to draw ball3 on the canvas.
+		*/
+		function drawBall3() {
+			ctx.beginPath();
+			ctx.arc(x3, y3, ballRadius, 0, Math.PI * 2);
+			ctx.fillStyle = color3;
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		/*
+			Function to draw ball4 on the canvas.
+		*/
+		function drawBall4() {
+			ctx.beginPath();
+			ctx.arc(x4, y4, ballRadius, 0, Math.PI * 2);
+			ctx.fillStyle = color4;
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		/*
+			Function to draw ball5 on the canvas.
+		*/
+		function drawBall5() {
+			ctx.beginPath();
+			ctx.arc(x5, y5, ballRadius, 0, Math.PI * 2);
+			ctx.fillStyle = color5;
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		/*
+			Main function which calls other functions and maintains the game.
+		*/
+		function draw() {
+			// clearRect() function clears the rectangle whose dimensions are passed as arguments to the funtion.
+			// The first 2 arguments define the initial x-y coordinates of the rectangle.
+			// The last 2 arguments define the ending x-y coordinates of the rectangle.
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			drawBall1();
+			drawBall2();
+			drawBall3();
+			drawBall4();
+			drawBall5();
+			
+			//checking x and y coordinates of the balls to make them bounce back from the wall
+			if(y1 + dy1 < ballRadius || y1 + dy1 > canvas.height - ballRadius)
+			{
+				dy1 = -dy1;
+				ballColor1();
+			}
+			if(x1 + dx1 < ballRadius || x1 + dx1 > canvas.width - ballRadius)
+			{
+				dx1 = -dx1;
+				ballColor1();
+			}
+
+			if(y2 + dy2 < ballRadius || y2 + dy2 > canvas.height - ballRadius)
+			{
+				dy2 = -dy2;
+				ballColor2();
+			}
+			if(x2 + dx2 < ballRadius || x2 + dx2 > canvas.width - ballRadius)
+			{
+				dx2 = -dx2;
+				ballColor2();
+			}
+
+			if(y3 + dy3 < ballRadius || y3 + dy3 > canvas.height - ballRadius)
+			{
+				dy3 = -dy3;
+				ballColor3();
+			}
+			if(x3 + dx3 < ballRadius || x3 + dx3 > canvas.width - ballRadius)
+			{
+				dx3 = -dx3;
+				ballColor3();
+			}
+
+			if(y4 + dy4 < ballRadius || y4 + dy4 > canvas.height - ballRadius)
+			{
+				dy4 = -dy4;
+				ballColor4();
+			}
+			if(x4 + dx4 < ballRadius || x4 + dx4 > canvas.width - ballRadius)
+			{
+				dx4 = -dx4;
+				ballColor4();
+			}
+
+			if(y5 + dy5 < ballRadius || y5 + dy5 > canvas.height - ballRadius)
+			{
+				dy5 = -dy5;
+				ballColor5();
+			}
+			if(x5 + dx5 < ballRadius || x5 + dx5 > canvas.width - ballRadius)
+			{
+				dx5 = -dx5;
+				ballColor5();
+			}
+			//Changing the x-coordinate of the balls
+			x1 += dx1;
+			x2 += dx2;
+			x3 += dx3;
+			x4 += dx4;
+			x5 += dx5;
+			//Changing the y-coordinate of the balls
+			y1 += dy1;
+			y2 += dy2;
+			y3 += dy3;
+			y4 += dy4;
+			y5 += dy5;
+		}
+
+		ballColorInit();
+		//Calling the draw function infinitely after every 10ms.
+		setInterval(draw, 10);
+	</script>
+</body>
+</html>
