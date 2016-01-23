@@ -1,2 +1,3 @@
 # JavaScript-Fun
-Some fun JS Programs
+
+Ball Collision Theme using HTML5 canvas and Javascript.
