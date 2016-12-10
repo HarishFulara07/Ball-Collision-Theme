@@ -1,3 +1,3 @@
-# JavaScript-Fun
+# Ball Collision Theme
 
-Ball Collision Theme using HTML5 canvas and Javascript.
+There are multiple balls which move in random fashion inside a box. The color of a ball gets changed when it collides with the wall of the box.
